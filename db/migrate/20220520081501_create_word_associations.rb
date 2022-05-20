@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWordAssociations < ActiveRecord::Migration[6.1]
   def change
     create_table :word_associations do |t|

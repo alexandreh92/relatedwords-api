@@ -11,6 +11,8 @@ gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'faraday'
+
 # gem 'rack-cors'
 
 group :development, :test do

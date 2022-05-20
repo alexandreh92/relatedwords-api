@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WordAssociation < ApplicationRecord
   # Associations
   belongs_to :word
