@@ -1,4 +1,7 @@
 AllCops:
+  Exclude:
+    - "bin/**/*"
+  NewCops: enable
   TargetRubyVersion: 2.7
 
 # Layout
@@ -71,3 +74,6 @@ Style/HashLikeCase:
   MinBranchesCount: 4
 Style/SingleArgumentDig:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  AutoCorrect: true
