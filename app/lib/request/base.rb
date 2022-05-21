@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
 module Request
-  class ParseError < StandardError
-    def initialize(response)
-      @response = response.body
-      super(@response)
-    end
-  end
-
   class Base
     DEFAULT_BASE_URL = '/'
 
@@ -28,13 +21,13 @@ module Request
     private
 
       def connection
-        @connection ||= Faraday.new(base_url) do |f|
-          f.use ExceptionMiddleware
-          f.request :retry,
-                    max: 2,
-                    interval: 0.05,
-                    interval_randomness: 0.5,
-                    backoff_factor: 2
+        @connection ||= Faraday.new(url: base_url) do |conn|
+          conn.use ExceptionMiddleware
+          conn.request :retry,
+                       max: 2,
+                       interval: 0.05,
+                       interval_randomness: 0.5,
+                       backoff_factor: 2
         end
       end
 
@@ -43,7 +36,7 @@ module Request
       rescue TypeError => e
         raise Exceptions::ParseException, e.to_s
       rescue StandardError => e
-        raise RequestException.new(e, response, base_url)
+        raise Exceptions::RequestException.new(e, response, base_url)
       end
   end
 end

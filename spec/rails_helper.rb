@@ -21,6 +21,11 @@ ActiveRecord::Migration.maintain_test_schema!
 ActiveJob::Base.queue_adapter = :test
 
 RSpec.configure do |config|
+  # Clears terminal output before starting new spec
+  config.before :suite do
+    puts `clear && printf "\e[3J"`
+  end
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
