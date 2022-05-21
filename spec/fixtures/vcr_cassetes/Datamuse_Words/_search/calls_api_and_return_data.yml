@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 21 May 2022 07:36:11 GMT
+      - Sat, 21 May 2022 17:30:38 GMT
       Vary:
       - Accept-Encoding
       Content-Length:
@@ -54,5 +54,5 @@ http_interactions:
         pot","score":50791,"tags":["n"]},{"word":"restaurant","score":50790,"tags":["n"]},{"word":"dutch
         oven","score":50789,"tags":["n","prop"]},{"word":"bakehouse","score":50788,"tags":["n"]},{"word":"backsplash","score":50787,"tags":["n"]},{"word":"night
         table","score":50786,"tags":["n"]}]'
-  recorded_at: Sat, 21 May 2022 07:36:10 GMT
+  recorded_at: Sat, 21 May 2022 17:30:38 GMT
 recorded_with: VCR 6.1.0
