@@ -11,6 +11,8 @@ gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'faraday'
+
 # gem 'rack-cors'
 
 group :development, :test do
@@ -36,6 +38,8 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Word < ApplicationRecord
   # Associations
   has_many :word_associations
