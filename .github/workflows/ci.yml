@@ -69,16 +69,8 @@ jobs:
         ports:
         - 5432:5432
         env:
-          POSTGRES_DB: relatedwords_api_test
-          POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432/tcp
+          POSTGRES_PASSWORD: postgres
 
     steps:
       - name: Checkout code
@@ -93,17 +85,15 @@ jobs:
         env:
           DB_USERNAME: postgres
           DB_PASSWORD: postgres
-          DB_HOSTNAME: localhost
+          DB_HOSTNAME: 127.0.0.1
+          RAILS_ENV: test
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
 
       - name: Run tests
+        env:
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_HOSTNAME: 127.0.0.1
         run: bundle exec rspec
-
-      - name: Upload coverage results
-        uses: actions/upload-artifact@master
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage
