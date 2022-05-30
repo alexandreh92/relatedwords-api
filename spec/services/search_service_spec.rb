@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe SearchService, type: :service do
-  subject { described_class }
+  subject(:service) { described_class }
 
   let(:search_value) { 'kitchen' }
 
@@ -37,12 +37,14 @@ RSpec.describe SearchService, type: :service do
       let!(:word) { create(:word, :with_related_words, value: search_value) }
 
       it 'returns persisted related words' do
-        expect(subject.call(search_value: search_value)).to eq(word.related_words)
+        expect(service.call(search_value: search_value)).to eq(word.related_words)
       end
     end
 
     context 'when its related words are lesser or eq than 3' do
+      # rubocop:disable RSpec/LetSetup
       let!(:word) { create(:word, value: search_value, related_words: build_list(:word, 3)) }
+      # rubocop:enable RSpec/LetSetup
 
       it_behaves_like 'calls search from api'
     end

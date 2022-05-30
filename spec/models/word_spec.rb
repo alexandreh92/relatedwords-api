@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Word, type: :model do
   subject { build(:word) }
 
-  context 'associations' do
+  context 'when associating' do
     it { is_expected.to have_many(:word_associations) }
     it { is_expected.to have_many(:related_words).through(:word_associations) }
 
@@ -13,7 +13,7 @@ RSpec.describe Word, type: :model do
     it { is_expected.to have_many(:parent_words).through(:associated_words).source(:word) }
   end
 
-  context 'validations' do
+  context 'when validating' do
     it { is_expected.to validate_presence_of(:value) }
     it { is_expected.to validate_uniqueness_of(:value) }
     it { is_expected.not_to allow_value(nil).for(:score) }

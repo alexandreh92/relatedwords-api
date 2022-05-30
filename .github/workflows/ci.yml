@@ -54,18 +54,18 @@ jobs:
 
       - name: Run linters
         run: |
-          bundle exec rubocop -l
+          bundle exec rubocop
       - name: Run security checks
         run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
+          bundle exec bundler-audit --update
+          bundle exec brakeman -q -w2
 
   tests:
     name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
+        image: postgres:12
         env:
           POSTGRES_USER: postgres
           POSTGRES_DB: relatedwords_api_test
@@ -83,11 +83,13 @@ jobs:
 
       - name: Setup test database
         env:
-          RAILS_ENV: test
-          PGHOST: localhost
+          PGHOST: 127.0.0.1
           PGUSER: postgres
+          RAILS_ENV: test
         run: |
-          bin/rails db:setup
+          sudo apt-get -yqq install libpq-dev
+          bundle exec rails db:create
+          bundle exec rails db:migrate
 
       - name: Run tests
-        run: bin/rspec
+        run: bundle exec rspec

@@ -4,12 +4,7 @@ require 'webmock/rspec'
 require 'vcr'
 
 VCR.configure do |c|
-  # c.default_cassette_options = {
-  #   record: :all,
-  #   match_requests_on: %i[method uri body]
-  # }
-
-  c.cassette_library_dir = Rails.root.join('spec', 'fixtures', 'vcr_cassetes')
+  c.cassette_library_dir = Rails.root.join('spec/fixtures/vcr_cassetes')
   c.hook_into :webmock
   c.ignore_localhost = true
   c.configure_rspec_metadata!
@@ -26,7 +21,7 @@ end
 
 RSpec.configure do |config|
   # Enables VCR only if have :vcr flag
-  config.around(:each) do |ex|
+  config.around do |ex|
     if ex.metadata.key?(:vcr)
       WebMock.disable_net_connect!(allow: 'notify.bugsnag.com')
       ex.run

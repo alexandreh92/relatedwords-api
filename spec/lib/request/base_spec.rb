@@ -6,22 +6,22 @@ RSpec.describe Request::Base, type: :lib do
   subject(:lib) { described_class.new }
 
   let(:body) { { id: 1 }.to_json }
-  let(:response) { double('response', status: 200, body: body) }
+  let(:response) { instance_double(Faraday::Response, status: 200, body: body) }
 
-  context '#connection' do
-    subject { lib.send(:connection) }
+  describe '#connection' do
+    subject(:connection) { lib.send(:connection) }
 
     it 'returns a faraday connection' do
-      expect(subject).to be_a(Faraday::Connection)
+      expect(connection).to be_a(Faraday::Connection)
     end
 
     it 'returns the pre-configured connection with custom middleware' do
-      handlers = subject.builder.handlers
+      handlers = connection.builder.handlers
       expect(handlers).to include(Request::ExceptionMiddleware)
     end
   end
 
-  context '#get' do
+  describe '#get' do
     before do
       allow_any_instance_of(Faraday::Connection).to receive(:get).and_return(response)
     end
@@ -32,8 +32,6 @@ RSpec.describe Request::Base, type: :lib do
   end
 
   context 'when failures occurs' do
-    subject { lib.get('testing') }
-
     before do
       allow_any_instance_of(Faraday::Connection).to receive(:get).and_return(response)
     end
@@ -44,7 +42,7 @@ RSpec.describe Request::Base, type: :lib do
       end
 
       it 're-raise Request::Exceptions::ParseException error' do
-        expect { subject }.to raise_error(Request::Exceptions::ParseException)
+        expect { lib.get('testing') }.to raise_error(Request::Exceptions::ParseException)
       end
     end
 
@@ -53,8 +51,8 @@ RSpec.describe Request::Base, type: :lib do
         allow(JSON).to receive(:parse).and_raise(StandardError)
       end
 
-      it 're-raise Exceptions::RequestException ' do
-        expect { subject }.to raise_error(Request::Exceptions::RequestException)
+      it 're-raise Exceptions::RequestException' do
+        expect { lib.get('testing') }.to raise_error(Request::Exceptions::RequestException)
       end
     end
   end
