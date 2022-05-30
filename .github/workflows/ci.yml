@@ -97,3 +97,13 @@ jobs:
           DB_PASSWORD: postgres
           DB_HOSTNAME: 127.0.0.1
         run: bundle exec rspec
+
+      - name: Tar files
+        run: tar -cvf coverage-results.tar coverage
+
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage-results.tar
