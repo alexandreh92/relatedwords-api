@@ -40,37 +40,45 @@ name: CI
 on: [pull_request]
 
 jobs:
-  linters:
-    name: Linters
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # linters:
+  #   name: Linters
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+  #     - name: Setup Ruby and install gems
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         bundler-cache: true
 
-      - name: Run linters
-        run: |
-          bundle exec rubocop
-      - name: Run security checks
-        run: |
-          bundle exec bundler-audit --update
-          bundle exec brakeman -q -w2
+  #     - name: Run linters
+  #       run: |
+  #         bundle exec rubocop
+  #     - name: Run security checks
+  #       run: |
+  #         bundle exec bundler-audit --update
+  #         bundle exec brakeman -q -w2
 
   tests:
     name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:12
+        image: postgres:latest
+        ports:
+        - 5432:5432
         env:
-          POSTGRES_USER: postgres
           POSTGRES_DB: relatedwords_api_test
-          POSTGRES_PASSWORD: "postgres"
-        ports: ["5432:5432"]
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432/tcp
 
     steps:
       - name: Checkout code
@@ -83,13 +91,19 @@ jobs:
 
       - name: Setup test database
         env:
-          PGHOST: 127.0.0.1
-          PGUSER: postgres
-          RAILS_ENV: test
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_HOSTNAME: localhost
         run: |
-          sudo apt-get -yqq install libpq-dev
           bundle exec rails db:create
           bundle exec rails db:migrate
 
       - name: Run tests
         run: bundle exec rspec
+
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage

@@ -8,6 +8,7 @@ AllCops:
     - 'vendor/**/*'
     - 'tmp/**/*'
     - 'log/**/*'
+    - 'db/schema.rb'
   NewCops: enable
   TargetRubyVersion: 2.7
 
