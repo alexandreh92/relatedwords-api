@@ -21,5 +21,4 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         dokku-host: ${{ secrets.SERVER_URL }}
         app-name: ${{ secrets.DOKKU_APP }}
-        git-push-flags: '--force'
         remote-branch: main
