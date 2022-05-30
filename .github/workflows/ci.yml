@@ -1,36 +1,93 @@
+# name: CI
+# on: pull_request
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     services:
+#       postgres:
+#         image: postgres:12
+#         ports: ["5432:5432"]
+#         env:
+#           POSTGRES_PASSWORD: postgres
+#         options: >-
+#           --health-cmd pg_isready
+#           --health-interval 10s
+#           --health-timeout 5s
+#           --health-retries 5
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7.4
+
+#       - name: Build and run tests
+#         env:
+#           DATABASE_URL: postgres://postgres:@localhost:5432/test
+#           RAILS_ENV: test
+#           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+#         run: |
+#           sudo apt-get -yqq install libpq-dev
+#           gem install bundler
+#           bundle install --jobs 4 --retry 3
+#           bundle exec rubocop -l
+#           bundle exec rails db:prepare
+#           bundle exec rspec
+
+
 name: CI
-on: pull_request
+on: [pull_request]
+
 jobs:
-  test:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run linters
+        run: |
+          bundle exec rubocop -l
+      - name: Run security checks
+        run: |
+          bin/bundler-audit --update
+          bin/brakeman -q -w2
+
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:12
-        ports: ["5432:5432"]
+        image: postgres:11
         env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          POSTGRES_USER: postgres
+          POSTGRES_DB: relatedwords_api_test
+          POSTGRES_PASSWORD: "postgres"
+        ports: ["5432:5432"]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Ruby
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.4
+          bundler-cache: true
 
-      - name: Build and run tests
+      - name: Setup test database
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
           RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          PGHOST: localhost
+          PGUSER: postgres
         run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rubocop -l
-          bundle exec rails db:prepare
-          bundle exec rspec
+          bin/rails db:setup
+
+      - name: Run tests
+        run: bin/rspec
