@@ -22,6 +22,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rswag-specs'
   gem 'rubocop', '~> 1.29'
+  gem 'bullet'
 end
 
 group :development do
