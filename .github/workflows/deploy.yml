@@ -22,4 +22,4 @@ jobs:
         dokku-host: ${{ secrets.SERVER_URL }}
         app-name: ${{ secrets.DOKKU_APP }}
         git-push-flags: '--force'
-        remote-branch: main:master
+        remote-branch: main
