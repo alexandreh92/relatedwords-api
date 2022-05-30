@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchWordsFromApiService < BaseService
   attr_reader :search_value, :client, :adapter
 

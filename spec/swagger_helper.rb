@@ -37,7 +37,20 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        schemas: {
+          word: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer', example: 1 },
+              value: { type: 'string', example: 'stove' },
+              created_at: { type: 'string' },
+              updated_at: { type: 'string' }
+            }
+          }
+        }
+      }
     }
   }
 

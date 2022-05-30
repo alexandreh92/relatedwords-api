@@ -11,4 +11,6 @@ class Word < ApplicationRecord
   # Validations
   validates :value, uniqueness: true, presence: true
   validates :score, numericality: true
+
+  self.per_page = 20
 end

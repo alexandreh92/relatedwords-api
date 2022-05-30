@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Datamuse
   module Adapters
     class BaseAdapter
