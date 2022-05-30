@@ -1,6 +1,14 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   Exclude:
     - "bin/**/*"
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'db/schema.rb'
   NewCops: enable
   TargetRubyVersion: 2.7
 
@@ -17,6 +25,11 @@ Layout/IndentationConsistency:
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
   AutoCorrect: true
+
+# Naming
+Naming/FileName:
+  Exclude:
+    - config/initializers/rswag-ui.rb
 
 # Lint
 Lint/RaiseException:
@@ -77,3 +90,16 @@ Style/SingleArgumentDig:
 Style/FrozenStringLiteralComment:
   Enabled: true
   AutoCorrect: true
+
+# RSpec
+RSpec/MultipleExpectations:
+  Max: 4
+RSpec/FilePath:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - spec/requests/**/*

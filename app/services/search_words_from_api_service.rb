@@ -11,7 +11,7 @@ class SearchWordsFromApiService < BaseService
   end
 
   def call
-    return [] unless results.present?
+    return [] if results.blank?
 
     store_searched_value
     store_related_words
