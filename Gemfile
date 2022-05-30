@@ -8,10 +8,10 @@ ruby '2.7.4'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
-
 gem 'bootsnap', '>= 1.4.4', require: false
-
 gem 'faraday'
+gem 'rswag-api'
+gem 'rswag-ui'
 
 # gem 'rack-cors'
 
@@ -19,7 +19,6 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
   gem 'rubocop', '~> 1.29'
-
   gem 'factory_bot_rails'
 end
 
@@ -40,6 +39,7 @@ group :test do
   gem 'timecop'
   gem 'vcr'
   gem 'webmock'
+  gem 'rswag-specs'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
