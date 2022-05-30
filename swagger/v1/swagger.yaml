@@ -1,0 +1,44 @@
+---
+openapi: 3.0.1
+info:
+  title: RelatedWords API
+  version: v1
+  description: This is the documentation for RelatedWords API
+paths:
+  "/api/v1/search":
+    get:
+      summary: Returns related words
+      tags:
+      - Search
+      parameters:
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://localhost:3000
+  description: Development server
+- url: ''
+  description: Production server (uses live data)
+  variables:
+    X-API-KEY:
+      default: ''
+components:
+  schemas:
+    word:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        value:
+          type: string
+          example: stove
+        created_at:
+          type: string
+        updated_at:
+          type: string

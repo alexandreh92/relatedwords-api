@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.datamuse.com/words?ml=foo-bar
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.8.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-transform, max-age=86400
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 May 2022 09:11:58 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Thu, 26 May 2022 09:11:57 GMT
+recorded_with: VCR 6.1.0

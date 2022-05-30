@@ -1,0 +1,9 @@
+{
+  "name": "Related Words API",
+  "description": "Some description",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rake db:migrate"
+    }
+  }
+}

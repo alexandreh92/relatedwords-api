@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.datamuse.com/words?ml=kitchen
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.8.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-transform, max-age=86400
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 May 2022 09:09:30 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1000'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"word":"stove","score":71210,"tags":["n"]},{"word":"cooking","score":69795,"tags":["n","v"]},{"word":"galley","score":69455,"tags":["n"]},{"word":"pantry","score":68793,"tags":["n"]},{"word":"cooks","score":68529,"tags":["n"]},{"word":"cook","score":68093,"tags":["n","v"]},{"word":"chef","score":67361,"tags":["n"]},{"word":"cookery","score":65852,"tags":["n"]},{"word":"canteen","score":65842,"tags":["n"]},{"word":"dining","score":65804,"tags":["n","v"]},{"word":"culinary","score":65578,"tags":["adj"]},{"word":"drawer","score":65098,"tags":["n"]},{"word":"cookbook","score":64056,"tags":["n"]},{"word":"cooked","score":63934,"tags":["adj","v"]},{"word":"catering","score":62539,"tags":["n"]},{"word":"cuisine","score":62453,"tags":["n"]},{"word":"dinner","score":62216,"tags":["n"]},{"word":"food","score":61969,"tags":["n"]},{"word":"nook","score":61909,"tags":["n"]},{"word":"icebox","score":61691,"tags":["n"]},{"word":"household","score":61669,"tags":["n"]},{"word":"chicken","score":60419,"tags":["n"]},{"word":"footlocker","score":59612,"tags":["n"]},{"word":"tea","score":56895,"tags":["n"]},{"word":"polishing","score":56280,"tags":["n"]},{"word":"middens","score":55791,"tags":["n"]},{"word":"mini","score":55368,"tags":["adj"]},{"word":"back","score":54879,"tags":["adv","adj","n"]},{"word":"leg","score":52501,"tags":["n"]},{"word":"popular","score":52191,"tags":["adj"]},{"word":"foodservice","score":50859,"tags":["n"]},{"word":"populaire","score":50859,"tags":["n"]},{"word":"bathroom","score":50858,"tags":["n"]},{"word":"dishwasher","score":50856,"tags":["n"]},{"word":"fridge","score":50855,"tags":["n"]},{"word":"scullery","score":50854,"tags":["n"]},{"word":"countertop","score":50853,"tags":["n"]},{"word":"kitchenette","score":50852,"tags":["n"]},{"word":"cooker","score":50851,"tags":["n"]},{"word":"refrigerator","score":50849,"tags":["n"]},{"word":"downstairs","score":50848,"tags":["n"]},{"word":"oven","score":50847,"tags":["n","adv"]},{"word":"bedroom","score":50846,"tags":["n"]},{"word":"fireplace","score":50845,"tags":["n"]},{"word":"upstairs","score":50844,"tags":["n","adv","adj"]},{"word":"cabinetry","score":50842,"tags":["n"]},{"word":"linen
+        closet","score":50841,"tags":["n"]},{"word":"basement","score":50840,"tags":["n"]},{"word":"dishwashing
+        machine","score":50839,"tags":["n"]},{"word":"livingroom","score":50837,"tags":["n"]},{"word":"cooktop","score":50836,"tags":["n"]},{"word":"room","score":50835,"tags":["n"]},{"word":"patio","score":50834,"tags":["n"]},{"word":"cookhouse","score":50833,"tags":["n"]},{"word":"closet","score":50832,"tags":["n"]},{"word":"dining
+        room","score":50831,"tags":["n"]},{"word":"cookroom","score":50830,"tags":["n"]},{"word":"kitchenmaid","score":50829,"tags":["n"]},{"word":"utility
+        room","score":50828,"tags":["n"]},{"word":"stillroom","score":50827,"tags":["n"]},{"word":"breakfast
+        nook","score":50826,"tags":["n"]},{"word":"cupboards","score":50824,"tags":["n"]},{"word":"diningroom","score":50823,"tags":["n"]},{"word":"range
+        hood","score":50822,"tags":["n"]},{"word":"master bedroom","score":50821,"tags":["n"]},{"word":"gas
+        burner","score":50820,"tags":["n"]},{"word":"kitchen cabinet","score":50819,"tags":["n"]},{"word":"gas
+        ring","score":50818,"tags":["n"]},{"word":"kitchen range","score":50817,"tags":["n"]},{"word":"stovetop","score":50816,"tags":["n"]},{"word":"chafing
+        dish","score":50815,"tags":["n"]},{"word":"crockpot","score":50814,"tags":["n"]},{"word":"towel
+        bar","score":50813,"tags":["n"]},{"word":"cupboard","score":50812,"tags":["n"]},{"word":"hotplate","score":50811,"tags":["n"]},{"word":"airing
+        cupboard","score":50810,"tags":["n"]},{"word":"spice rack","score":50809,"tags":["n"]},{"word":"gas
+        range","score":50808,"tags":["n"]},{"word":"dishes","score":50807,"tags":["n"]},{"word":"mudroom","score":50806,"tags":["n"]},{"word":"storage
+        room","score":50805,"tags":["n"]},{"word":"laundry","score":50804,"tags":["n"]},{"word":"fish
+        slice","score":50803,"tags":["n"]},{"word":"fryer","score":50802,"tags":["n"]},{"word":"dish
+        washer","score":50801,"tags":["n"]},{"word":"electric range","score":50800,"tags":["n","prop"]},{"word":"potbelly
+        stove","score":50799,"tags":["n"]},{"word":"washhouse","score":50798,"tags":["n"]},{"word":"kitchen
+        appliance","score":50797,"tags":["n"]},{"word":"cabinets","score":50796,"tags":["n"]},{"word":"tub","score":50795,"tags":["n"]},{"word":"gas
+        oven","score":50794,"tags":["n"]},{"word":"deli","score":50793,"tags":["n"]},{"word":"sunroom","score":50792,"tags":["n"]},{"word":"crock
+        pot","score":50791,"tags":["n"]},{"word":"restaurant","score":50790,"tags":["n"]},{"word":"dutch
+        oven","score":50789,"tags":["n","prop"]},{"word":"bakehouse","score":50788,"tags":["n"]},{"word":"backsplash","score":50787,"tags":["n"]},{"word":"night
+        table","score":50786,"tags":["n"]}]'
+  recorded_at: Thu, 26 May 2022 09:09:30 GMT
+recorded_with: VCR 6.1.0
